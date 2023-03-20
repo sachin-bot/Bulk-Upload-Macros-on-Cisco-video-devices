@@ -1,0 +1,69 @@
+#! /usr/bin/env python
+
+
+
+
+import getpass
+import os
+import json
+from netmiko import ConnectHandler
+
+#Array to read IP addresses from IPAdd.txt
+ip_list=[]
+
+# Create text file with name IPAdd.txt and enter IP Addresses of the Cisco VC devices each IP on new line
+#This will be IP lits of Cisco VC devices you want to upload Extension and Macros on list of VC endpoints.
+
+with open("IPAdd.txt","r") as file:
+    for address in file:
+        ip_list.append(address.split('\n') [0])
+
+#Username and password that you use to login to the VC device GUI
+
+username = input('username:')
+password = getpass.getpass()
+DEVICE_TYPE= 'cisco_tp'
+
+command = input('Command to set extension:')
+command1 = input('Command1 to set Macro:')
+command2 = input('Command2 to set Activate:')
+
+for ip in ip_list:
+#check if device is reachable and then try to establish SSH connection to device if its reachable
+    response= os.popen(f'ping{ip}').read()
+    if "TTL" in response:
+        try:
+            SSH = ConnectHandler(ip=ip,username=username,password=password,device_type=DEVICE_TYPE)
+            set_extension = SSH.send_command_timing(command,read_timeout=90)
+            with open('extension.txt','r') as file1:
+                ext=file1.read()
+                read_xml= SSH.send_command_timing(ext,read_timeout=90)
+                file1.close()
+            end_command_extension = SSH.send_command_timing('.',read_timeout=90)
+            set_macro = SSH.send_command_timing (command1, read_timeout=90)
+            with open('Javascript.txt','r')as file2:
+                content = file2.read()
+                read_macro = SSH.send_command_timing(content,read_timeout=90)
+                file2.close()
+
+            end_command_macro = SSH.send_command_timing ('.', read_timeout=180)
+            activate_macro = SSH.send_command_timing (command2, read_timeout=180)
+        except:
+#rite down any exceptions with try execution or if command fails in IP results.txt
+            with open('results.txt','w')as res:
+                res.write()
+                res.close()
+                
+# Write down unreachable IP addresses in IP_DOWN.txt
+    else:
+        with open('IP_DOWN.txt','a') as f:
+            f.write(f"{ip}"+'\n')
+            f.close()
+
+
+
+
+
+
+
+
