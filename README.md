@@ -14,10 +14,14 @@ Please follow below steps to run script in bulk on list of CE version VC devices
 9) when prompted to enter macro  "xCommand Macros Macro Save Name: webexdialer Overwrite: True Transpile: False"
 10) when prompted to activate macro  "xCommand Macros Macro Activate Name: webexdialer"
 
-Disclaimer
+
+
+
+
+Disclaimer::
 This example is only a sample and is NOT guaranteed to be bug free and production quality.
 
-This examples Illustrate how to use upload Macros in Bulk on CE Devices of Cisco.
+This examples Illustrate how to  upload Macros in Bulk on CE version video devices of Cisco.
 
 
 
