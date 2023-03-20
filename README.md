@@ -8,8 +8,8 @@ Please follow below steps to run script in bulk on list of CE version VC devices
 3) create results.txt to capture any exceptions during script execution.
 4) create IP_DOWN.txt to capture Unreachable IP addresses.
 5) create file1.txt and add list of IP addresses of VC devices that you want to bulk upload macros on (each IP on new line).
-6) Run main script using python IDLE or pychard or you can create exe and run it.
-7) ENter username and password when prompted for the codecs (Login password should be same for all VC devices, you can create seperate credentials if want)
+6) Run main script using python IDLE or pycharm or you can create exe and run it.
+7) ENter admin or integrator username and password when prompted for the codecs.
 8) when prompted to extension, enter command "xCommand UserInterface Extensions Set ConfigId: webexdialer" (name of the dialer here of your choice I have set this to webexdialer)
 9) when prompted to enter macro  "xCommand Macros Macro Save Name: webexdialer Overwrite: True Transpile: False"
 10) when prompted to activate macro  "xCommand Macros Macro Activate Name: webexdialer"
