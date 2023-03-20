@@ -5,7 +5,7 @@
 
 import getpass
 import os
-import json
+
 from netmiko import ConnectHandler
 
 #Array to read IP addresses from IPAdd.txt
